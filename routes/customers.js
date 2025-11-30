@@ -1,15 +1,20 @@
+// routes/customers.js
+// Routes for the Customers collection.
+
 const express = require('express');
 const router = express.Router();
-const customersController = require('../controllers/customers');
-const validation = require('../middleware/middleware');
+
+const controller = require('../controllers/customers');
+const { saveCustomer } = require('../middleware/middleware');
 const { isAuthenticated } = require('../middleware/authenticate');
 
-router.get('/', customersController.getAll);
-router.get('/:id', customersController.getSingle);
+// Public routes
+router.get('/', controller.getAll);
+router.get('/:id', controller.getSingle);
 
-//protected routes
-router.post('/', isAuthenticated, validation.saveCustomer, customersController.createCustomer);
-router.put('/:id', isAuthenticated, validation.saveCustomer, customersController.updateCustomer);
-router.delete('/:id', isAuthenticated, customersController.deleteCustomer);
+// Protected routes
+router.post('/', isAuthenticated, saveCustomer, controller.createCustomer);
+router.put('/:id', isAuthenticated, saveCustomer, controller.updateCustomer);
+router.delete('/:id', isAuthenticated, controller.deleteCustomer);
 
 module.exports = router;

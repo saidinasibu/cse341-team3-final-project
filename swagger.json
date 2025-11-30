@@ -1,675 +1,245 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
-    "title": "My API",
-    "description": "Friends and Students API",
+    "title": "Next Chapter Books API",
+    "description": "This API is for a bookstore project. It includes Books, Authors, Stores, and Customers. The API supports GET, POST, PUT, and DELETE. OAuth GitHub is used for protected routes.",
     "version": "1.0.0"
   },
-  "host": "cse341-project1-6rmg.onrender.com",
-  "basePath": "/",
-  "schemes": [
-    "https"
+
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local server"
+    }
   ],
+
   "paths": {
-    "/": {
+    "/books": {
       "get": {
-        "description": "",
+        "summary": "Get all books",
         "responses": {
           "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/books/": {
-      "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
+            "description": "List of books"
           }
         }
       },
       "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "title": {
-                  "example": "any"
-                },
-                "author": {
-                  "example": "any"
-                },
-                "genre": {
-                  "example": "any"
-                },
-                "publishedYear": {
-                  "example": "any"
-                },
-                "language": {
-                  "example": "any"
-                },
-                "pages": {
-                  "example": "any"
-                },
-                "available": {
-                  "example": "any"
-                },
-                "summary": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
+        "summary": "Create a new book",
+        "description": "This route is protected by GitHub OAuth.",
         "responses": {
           "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
+            "description": "Book created"
           },
           "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
+            "description": "User not authenticated"
           }
         }
       }
     },
+
     "/books/{id}": {
       "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "summary": "Get one book",
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "Book found" },
+          "400": { "description": "Invalid ID" },
+          "404": { "description": "Book not found" }
         }
       },
       "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "title": {
-                  "example": "any"
-                },
-                "author": {
-                  "example": "any"
-                },
-                "genre": {
-                  "example": "any"
-                },
-                "publishedYear": {
-                  "example": "any"
-                },
-                "language": {
-                  "example": "any"
-                },
-                "pages": {
-                  "example": "any"
-                },
-                "available": {
-                  "example": "any"
-                },
-                "summary": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
+        "summary": "Update a book",
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "Book updated" },
+          "400": { "description": "Invalid ID" },
+          "401": { "description": "User not authenticated" }
         }
       },
       "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "summary": "Delete a book",
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "Book deleted" },
+          "400": { "description": "Invalid ID" },
+          "401": { "description": "User not authenticated" }
         }
       }
     },
-    "/authors/": {
+
+    "/authors": {
       "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "summary": "Get all authors",
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "List of authors" }
         }
       },
       "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "birthYear": {
-                  "example": "any"
-                },
-                "nationality": {
-                  "example": "any"
-                },
-                "awards": {
-                  "example": "any"
-                },
-                "numBooksWritten": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
+        "summary": "Create a new author",
+        "description": "This route is protected by GitHub OAuth.",
         "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "201": { "description": "Author created" },
+          "401": { "description": "User not authenticated" }
         }
       }
     },
+
     "/authors/{id}": {
       "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "summary": "Get one author",
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "Author found" },
+          "400": { "description": "Invalid ID" },
+          "404": { "description": "Author not found" }
         }
       },
       "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "birthYear": {
-                  "example": "any"
-                },
-                "nationality": {
-                  "example": "any"
-                },
-                "awards": {
-                  "example": "any"
-                },
-                "numBooksWritten": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
+        "summary": "Update an author",
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "Author updated" },
+          "400": { "description": "Invalid ID" },
+          "401": { "description": "User not authenticated" }
         }
       },
       "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "summary": "Delete an author",
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "Author deleted" },
+          "400": { "description": "Invalid ID" },
+          "401": { "description": "User not authenticated" }
         }
       }
     },
-    "/stores/": {
+
+    "/stores": {
       "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "summary": "Get all stores",
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "List of stores" }
         }
       },
       "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "location": {
-                  "example": "any"
-                },
-                "owner": {
-                  "example": "any"
-                },
-                "employees": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
+        "summary": "Create a new store",
+        "description": "This route is protected by GitHub OAuth.",
         "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "201": { "description": "Store created" },
+          "401": { "description": "User not authenticated" }
         }
       }
     },
+
     "/stores/{id}": {
       "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "summary": "Get one store",
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "Store found" },
+          "400": { "description": "Invalid ID" },
+          "404": { "description": "Store not found" }
         }
       },
       "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "location": {
-                  "example": "any"
-                },
-                "owner": {
-                  "example": "any"
-                },
-                "employees": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
+        "summary": "Update a store",
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "Store updated" },
+          "400": { "description": "Invalid ID" },
+          "401": { "description": "User not authenticated" }
         }
       },
       "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "summary": "Delete a store",
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "Store deleted" },
+          "400": { "description": "Invalid ID" },
+          "401": { "description": "User not authenticated" }
         }
       }
     },
-    "/customers/": {
+
+    "/customers": {
       "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "summary": "Get all customers",
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "List of customers" }
         }
       },
       "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "fullName": {
-                  "example": "any"
-                },
-                "address": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "phoneNumber": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
+        "summary": "Create a new customer",
+        "description": "This route is protected by GitHub OAuth.",
         "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "201": { "description": "Customer created" },
+          "401": { "description": "User not authenticated" }
         }
       }
     },
+
     "/customers/{id}": {
       "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "summary": "Get one customer",
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "Customer found" },
+          "400": { "description": "Invalid ID" },
+          "404": { "description": "Customer not found" }
         }
       },
       "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "fullName": {
-                  "example": "any"
-                },
-                "address": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "phoneNumber": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
+        "summary": "Update a customer",
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "Customer updated" },
+          "400": { "description": "Invalid ID" },
+          "401": { "description": "User not authenticated" }
         }
       },
       "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "summary": "Delete a customer",
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "Customer deleted" },
+          "400": { "description": "Invalid ID" },
+          "401": { "description": "User not authenticated" }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "schemas": {
+      "Book": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "author": { "type": "string" },
+          "genre": { "type": "string" },
+          "publishedYear": { "type": "integer" },
+          "language": { "type": "string" },
+          "pages": { "type": "integer" },
+          "available": { "type": "boolean" },
+          "summary": { "type": "string" }
+        }
+      },
+
+      "Author": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "birthYear": { "type": "integer" },
+          "nationality": { "type": "string" },
+          "awards": { "type": "array", "items": { "type": "string" } },
+          "numBooksWritten": { "type": "integer" }
+        }
+      },
+
+      "Store": {
+        "type": "object",
+        "properties": {
+          "location": { "type": "string" },
+          "owner": { "type": "string" },
+          "employees": { "type": "integer" }
+        }
+      },
+
+      "Customer": {
+        "type": "object",
+        "properties": {
+          "fullName": { "type": "string" },
+          "address": { "type": "string" },
+          "email": { "type": "string" },
+          "phoneNumber": { "type": "string" }
         }
       }
     }

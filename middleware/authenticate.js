@@ -1,10 +1,16 @@
+// middleware/authenticate.js
+// This middleware checks if the user is logged in using GitHub OAuth.
+
 const isAuthenticated = (req, res, next) => {
-  if (req.session.user === undefined) {
-    return res.status(401).json("You do not have access.");
+  // If there is no user stored in the session, they are not logged in
+  if (!req.session.user) {
+    return res.status(401).json({
+      message: 'You must be logged in to access this route.'
+    });
   }
+
+  // If the user is in the session, let them continue
   next();
 };
 
-module.exports = {
-  isAuthenticated
-};
+module.exports = { isAuthenticated };

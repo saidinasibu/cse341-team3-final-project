@@ -1,15 +1,20 @@
+// routes/stores.js
+// Routes for the Stores collection.
+
 const express = require('express');
 const router = express.Router();
-const storesController = require('../controllers/stores');
-const validation = require('../middleware/middleware');
+
+const controller = require('../controllers/stores');
+const { saveStore } = require('../middleware/middleware');
 const { isAuthenticated } = require('../middleware/authenticate');
 
-router.get('/', storesController.getAll);
-router.get('/:id', storesController.getSingle);
+// Public routes
+router.get('/', controller.getAll);
+router.get('/:id', controller.getSingle);
 
-//protected routes
-router.post('/', isAuthenticated, validation.saveStore, storesController.createStore);
-router.put('/:id', isAuthenticated, validation.saveStore, storesController.updateStore);
-router.delete('/:id', isAuthenticated, storesController.deleteStore);
+// Protected routes
+router.post('/', isAuthenticated, saveStore, controller.createStore);
+router.put('/:id', isAuthenticated, saveStore, controller.updateStore);
+router.delete('/:id', isAuthenticated, controller.deleteStore);
 
 module.exports = router;
