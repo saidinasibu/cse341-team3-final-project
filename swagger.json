@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Next Chapter Books API",
-    "description": "This API is for a bookstore project. It includes Books, Authors, Stores, and Customers. The API supports GET, POST, PUT, and DELETE. OAuth GitHub is used for protected routes.",
+    "description": "API for a bookstore project. Includes Books, Authors, Stores, and Customers. CRUD endpoints and OAuth GitHub for protected routes.",
     "version": "1.0.0"
   },
 
@@ -18,21 +18,14 @@
       "get": {
         "summary": "Get all books",
         "responses": {
-          "200": {
-            "description": "List of books"
-          }
+          "200": { "description": "List of books" }
         }
       },
       "post": {
         "summary": "Create a new book",
-        "description": "This route is protected by GitHub OAuth.",
         "responses": {
-          "201": {
-            "description": "Book created"
-          },
-          "401": {
-            "description": "User not authenticated"
-          }
+          "201": { "description": "Book created" },
+          "400": { "description": "Validation error" }
         }
       }
     },
@@ -40,6 +33,15 @@
     "/books/{id}": {
       "get": {
         "summary": "Get one book",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "MongoDB ObjectId"
+          }
+        ],
         "responses": {
           "200": { "description": "Book found" },
           "400": { "description": "Invalid ID" },
@@ -48,18 +50,34 @@
       },
       "put": {
         "summary": "Update a book",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "MongoDB ObjectId"
+          }
+        ],
         "responses": {
           "204": { "description": "Book updated" },
-          "400": { "description": "Invalid ID" },
-          "401": { "description": "User not authenticated" }
+          "400": { "description": "Invalid ID" }
         }
       },
       "delete": {
         "summary": "Delete a book",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "MongoDB ObjectId"
+          }
+        ],
         "responses": {
           "204": { "description": "Book deleted" },
-          "400": { "description": "Invalid ID" },
-          "401": { "description": "User not authenticated" }
+          "400": { "description": "Invalid ID" }
         }
       }
     },
@@ -73,10 +91,9 @@
       },
       "post": {
         "summary": "Create a new author",
-        "description": "This route is protected by GitHub OAuth.",
         "responses": {
           "201": { "description": "Author created" },
-          "401": { "description": "User not authenticated" }
+          "400": { "description": "Validation error" }
         }
       }
     },
@@ -84,26 +101,51 @@
     "/authors/{id}": {
       "get": {
         "summary": "Get one author",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "MongoDB ObjectId"
+          }
+        ],
         "responses": {
           "200": { "description": "Author found" },
           "400": { "description": "Invalid ID" },
-          "404": { "description": "Author not found" }
+          "404": { "description": "Not found" }
         }
       },
       "put": {
         "summary": "Update an author",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "MongoDB ObjectId"
+          }
+        ],
         "responses": {
           "204": { "description": "Author updated" },
-          "400": { "description": "Invalid ID" },
-          "401": { "description": "User not authenticated" }
+          "400": { "description": "Invalid ID" }
         }
       },
       "delete": {
         "summary": "Delete an author",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "MongoDB ObjectId"
+          }
+        ],
         "responses": {
           "204": { "description": "Author deleted" },
-          "400": { "description": "Invalid ID" },
-          "401": { "description": "User not authenticated" }
+          "400": { "description": "Invalid ID" }
         }
       }
     },
@@ -117,10 +159,9 @@
       },
       "post": {
         "summary": "Create a new store",
-        "description": "This route is protected by GitHub OAuth.",
         "responses": {
           "201": { "description": "Store created" },
-          "401": { "description": "User not authenticated" }
+          "400": { "description": "Validation error" }
         }
       }
     },
@@ -128,26 +169,50 @@
     "/stores/{id}": {
       "get": {
         "summary": "Get one store",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "MongoDB ObjectId"
+          }
+        ],
         "responses": {
           "200": { "description": "Store found" },
-          "400": { "description": "Invalid ID" },
-          "404": { "description": "Store not found" }
+          "400": { "description": "Invalid ID" }
         }
       },
       "put": {
         "summary": "Update a store",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "MongoDB ObjectId"
+          }
+        ],
         "responses": {
           "204": { "description": "Store updated" },
-          "400": { "description": "Invalid ID" },
-          "401": { "description": "User not authenticated" }
+          "400": { "description": "Invalid ID" }
         }
       },
       "delete": {
         "summary": "Delete a store",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "MongoDB ObjectId"
+          }
+        ],
         "responses": {
           "204": { "description": "Store deleted" },
-          "400": { "description": "Invalid ID" },
-          "401": { "description": "User not authenticated" }
+          "400": { "description": "Invalid ID" }
         }
       }
     },
@@ -161,10 +226,9 @@
       },
       "post": {
         "summary": "Create a new customer",
-        "description": "This route is protected by GitHub OAuth.",
         "responses": {
           "201": { "description": "Customer created" },
-          "401": { "description": "User not authenticated" }
+          "400": { "description": "Validation error" }
         }
       }
     },
@@ -172,26 +236,50 @@
     "/customers/{id}": {
       "get": {
         "summary": "Get one customer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "MongoDB ObjectId"
+          }
+        ],
         "responses": {
           "200": { "description": "Customer found" },
-          "400": { "description": "Invalid ID" },
-          "404": { "description": "Customer not found" }
+          "400": { "description": "Invalid ID" }
         }
       },
       "put": {
         "summary": "Update a customer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "MongoDB ObjectId"
+          }
+        ],
         "responses": {
           "204": { "description": "Customer updated" },
-          "400": { "description": "Invalid ID" },
-          "401": { "description": "User not authenticated" }
+          "400": { "description": "Invalid ID" }
         }
       },
       "delete": {
         "summary": "Delete a customer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "MongoDB ObjectId"
+          }
+        ],
         "responses": {
           "204": { "description": "Customer deleted" },
-          "400": { "description": "Invalid ID" },
-          "401": { "description": "User not authenticated" }
+          "400": { "description": "Invalid ID" }
         }
       }
     }
@@ -212,18 +300,19 @@
           "summary": { "type": "string" }
         }
       },
-
       "Author": {
         "type": "object",
         "properties": {
           "name": { "type": "string" },
           "birthYear": { "type": "integer" },
           "nationality": { "type": "string" },
-          "awards": { "type": "array", "items": { "type": "string" } },
+          "awards": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
           "numBooksWritten": { "type": "integer" }
         }
       },
-
       "Store": {
         "type": "object",
         "properties": {
@@ -232,7 +321,6 @@
           "employees": { "type": "integer" }
         }
       },
-
       "Customer": {
         "type": "object",
         "properties": {
