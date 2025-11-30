@@ -1,0 +1,39 @@
+[{
+  "_id": {
+    "$oid": "6923fbbbdadbab3fea8d4cda"
+  },
+  "title": "The Clockwork Archive",
+  "author": "Mira Halden",
+  "genre": "Fantasy",
+  "publishedYear": 2016,
+  "language": "English",
+  "pages": 412,
+  "available": true,
+  "summary": "A young archivist discovers a hidden collection of mechanical tomes that can alter reality, pulling her into a struggle between ancient magical factions."
+},
+{
+  "_id": {
+    "$oid": "6923fbbbdadbab3fea8d4cdb"
+  },
+  "title": "Shadows of the Iron Coast",
+  "author": "Elias Renford",
+  "genre": "Adventure",
+  "publishedYear": 2020,
+  "language": "English",
+  "pages": 289,
+  "available": false,
+  "summary": "A sailor journeys along a treacherous coast of abandoned forts and uncovers a conspiracy that could endanger his homeland."
+},
+{
+  "_id": {
+    "$oid": "6923fbbbdadbab3fea8d4cdc"
+  },
+  "title": "Fragments of Tomorrow",
+  "author": "Hana Lior",
+  "genre": "Science Fiction",
+  "publishedYear": 2023,
+  "language": "English",
+  "pages": 350,
+  "available": true,
+  "summary": "After a global time-distortion event, several teens gain the ability to see possible futures and must choose which timelines to protect."
+}]

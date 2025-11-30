@@ -1,0 +1,27 @@
+[{
+  "_id": {
+    "$oid": "6923fc89dadbab3fea8d4ce6"
+  },
+  "fullName": "Ava Montgomery",
+  "address": "14 Willow Bend Street, Cape Town",
+  "email": "ava.montgomery@example.com",
+  "phoneNumber": "+27 63 458 1290"
+},
+{
+  "_id": {
+    "$oid": "6923fc89dadbab3fea8d4ce7"
+  },
+  "fullName": "Daniel Khoza",
+  "address": "221 Palm Ridge Avenue, Johannesburg",
+  "email": "daniel.khoza@example.com",
+  "phoneNumber": "+27 72 914 3301"
+},
+{
+  "_id": {
+    "$oid": "6923fc89dadbab3fea8d4ce8"
+  },
+  "fullName": "Sophia Naidoo",
+  "address": "9 Seaview Crescent, Durban",
+  "email": "sophia.naidoo@example.com",
+  "phoneNumber": "+27 64 782 4459"
+}]

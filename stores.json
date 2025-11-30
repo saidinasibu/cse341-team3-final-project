@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "6923fc52dadbab3fea8d4ce2"
+  },
+  "location": "Downtown Crescent Market, Cape Town",
+  "owner": "Liam Hart",
+  "employees": 12
+},
+{
+  "_id": {
+    "$oid": "6923fc52dadbab3fea8d4ce3"
+  },
+  "location": "Riverview Plaza, Johannesburg",
+  "owner": "Nora Bennett",
+  "employees": 8
+},
+{
+  "_id": {
+    "$oid": "6923fc52dadbab3fea8d4ce4"
+  },
+  "location": "Harborfront District, Durban",
+  "owner": "Samuel Price",
+  "employees": 15
+}]

@@ -1,0 +1,38 @@
+[{
+  "_id": {
+    "$oid": "6923fc07dadbab3fea8d4cde"
+  },
+  "name": "Mira Halden",
+  "birthYear": 1984,
+  "nationality": "British",
+  "awards": [
+    "Silver Quill Award",
+    "Fantasy Writers Circle Honor"
+  ],
+  "numBooksWritten": 7
+},
+{
+  "_id": {
+    "$oid": "6923fc07dadbab3fea8d4cdf"
+  },
+  "name": "Elias Renford",
+  "birthYear": 1976,
+  "nationality": "Canadian",
+  "awards": [
+    "Northern Pen Prize"
+  ],
+  "numBooksWritten": 5
+},
+{
+  "_id": {
+    "$oid": "6923fc07dadbab3fea8d4ce0"
+  },
+  "name": "Hana Lior",
+  "birthYear": 1991,
+  "nationality": "New Zealand",
+  "awards": [
+    "Sci-Fi Rising Star Award",
+    "Aurora Nominee"
+  ],
+  "numBooksWritten": 4
+}]
