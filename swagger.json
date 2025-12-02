@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Next Chapter Books API",
-    "description": "API for a bookstore project. Includes Books, Authors, Stores, and Customers. CRUD endpoints and OAuth GitHub for protected routes.",
+    "description": "API for a bookstore project. Includes Books, Authors, Stores, and Customers. CRUD endpoints and GitHub OAuth for protected routes.",
     "version": "1.0.0"
   },
 
@@ -26,10 +26,22 @@
         }
       },
       "post": {
-        "summary": "Create a new book",
+        "summary": "Create a new book (protected, requires GitHub login)",
+        "security": [
+          { "cookieAuth": [] }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Book" }
+            }
+          }
+        },
         "responses": {
           "201": { "description": "Book created" },
-          "400": { "description": "Validation error" }
+          "400": { "description": "Validation error" },
+          "401": { "description": "Unauthorized" }
         }
       }
     },
@@ -53,7 +65,10 @@
         }
       },
       "put": {
-        "summary": "Update a book",
+        "summary": "Update a book (protected, requires GitHub login)",
+        "security": [
+          { "cookieAuth": [] }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -63,13 +78,25 @@
             "description": "MongoDB ObjectId"
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Book" }
+            }
+          }
+        },
         "responses": {
           "204": { "description": "Book updated" },
-          "400": { "description": "Invalid ID" }
+          "400": { "description": "Invalid ID or validation error" },
+          "401": { "description": "Unauthorized" }
         }
       },
       "delete": {
-        "summary": "Delete a book",
+        "summary": "Delete a book (protected, requires GitHub login)",
+        "security": [
+          { "cookieAuth": [] }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -81,7 +108,8 @@
         ],
         "responses": {
           "204": { "description": "Book deleted" },
-          "400": { "description": "Invalid ID" }
+          "400": { "description": "Invalid ID" },
+          "401": { "description": "Unauthorized" }
         }
       }
     },
@@ -94,10 +122,22 @@
         }
       },
       "post": {
-        "summary": "Create a new author",
+        "summary": "Create a new author (protected, requires GitHub login)",
+        "security": [
+          { "cookieAuth": [] }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Author" }
+            }
+          }
+        },
         "responses": {
           "201": { "description": "Author created" },
-          "400": { "description": "Validation error" }
+          "400": { "description": "Validation error" },
+          "401": { "description": "Unauthorized" }
         }
       }
     },
@@ -121,7 +161,10 @@
         }
       },
       "put": {
-        "summary": "Update an author",
+        "summary": "Update an author (protected, requires GitHub login)",
+        "security": [
+          { "cookieAuth": [] }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -131,13 +174,25 @@
             "description": "MongoDB ObjectId"
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Author" }
+            }
+          }
+        },
         "responses": {
           "204": { "description": "Author updated" },
-          "400": { "description": "Invalid ID" }
+          "400": { "description": "Invalid ID or validation error" },
+          "401": { "description": "Unauthorized" }
         }
       },
       "delete": {
-        "summary": "Delete an author",
+        "summary": "Delete an author (protected, requires GitHub login)",
+        "security": [
+          { "cookieAuth": [] }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -149,7 +204,256 @@
         ],
         "responses": {
           "204": { "description": "Author deleted" },
-          "400": { "description": "Invalid ID" }
+          "400": { "description": "Invalid ID" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+
+    "/stores": {
+      "get": {
+        "summary": "Get all stores",
+        "responses": {
+          "200": { "description": "List of stores" }
+        }
+      },
+      "post": {
+        "summary": "Create a new store (protected, requires GitHub login)",
+        "security": [
+          { "cookieAuth": [] }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Store" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Store created" },
+          "400": { "description": "Validation error" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+
+    "/stores/{id}": {
+      "get": {
+        "summary": "Get one store",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "MongoDB ObjectId"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Store found" },
+          "400": { "description": "Invalid ID" },
+          "404": { "description": "Not found" }
+        }
+      },
+      "put": {
+        "summary": "Update a store (protected, requires GitHub login)",
+        "security": [
+          { "cookieAuth": [] }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "MongoDB ObjectId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Store" }
+            }
+          }
+        },
+        "responses": {
+          "204": { "description": "Store updated" },
+          "400": { "description": "Invalid ID or validation error" },
+          "401": { "description": "Unauthorized" }
+        }
+      },
+      "delete": {
+        "summary": "Delete a store (protected, requires GitHub login)",
+        "security": [
+          { "cookieAuth": [] }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "MongoDB ObjectId"
+          }
+        ],
+        "responses": {
+          "204": { "description": "Store deleted" },
+          "400": { "description": "Invalid ID" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+
+    "/customers": {
+      "get": {
+        "summary": "Get all customers",
+        "responses": {
+          "200": { "description": "List of customers" }
+        }
+      },
+      "post": {
+        "summary": "Create a new customer (protected, requires GitHub login)",
+        "security": [
+          { "cookieAuth": [] }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Customer" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Customer created" },
+          "400": { "description": "Validation error" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+
+    "/customers/{id}": {
+      "get": {
+        "summary": "Get one customer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "MongoDB ObjectId"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Customer found" },
+          "400": { "description": "Invalid ID" },
+          "404": { "description": "Not found" }
+        }
+      },
+      "put": {
+        "summary": "Update a customer (protected, requires GitHub login)",
+        "security": [
+          { "cookieAuth": [] }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "MongoDB ObjectId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Customer" }
+            }
+          }
+        },
+        "responses": {
+          "204": { "description": "Customer updated" },
+          "400": { "description": "Invalid ID or validation error" },
+          "401": { "description": "Unauthorized" }
+        }
+      },
+      "delete": {
+        "summary": "Delete a customer (protected, requires GitHub login)",
+        "security": [
+          { "cookieAuth": [] }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "MongoDB ObjectId"
+          }
+        ],
+        "responses": {
+          "204": { "description": "Customer deleted" },
+          "400": { "description": "Invalid ID" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "connect.sid",
+        "description": "Session cookie created after GitHub OAuth login"
+      }
+    },
+    "schemas": {
+      "Book": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "author": { "type": "string" },
+          "genre": { "type": "string" },
+          "publishedYear": { "type": "integer" },
+          "language": { "type": "string" },
+          "pages": { "type": "integer" },
+          "available": { "type": "boolean" },
+          "summary": { "type": "string" }
+        }
+      },
+      "Author": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "birthYear": { "type": "integer" },
+          "nationality": { "type": "string" },
+          "awards": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "numBooksWritten": { "type": "integer" }
+        }
+      },
+      "Store": {
+        "type": "object",
+        "properties": {
+          "location": { "type": "string" },
+          "owner": { "type": "string" },
+          "employees": { "type": "integer" }
+        }
+      },
+      "Customer": {
+        "type": "object",
+        "properties": {
+          "fullName": { "type": "string" },
+          "address": { "type": "string" },
+          "email": { "type": "string", "format": "email" },
+          "phoneNumber": { "type": "string" }
         }
       }
     }

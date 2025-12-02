@@ -1,5 +1,13 @@
 const request = require('supertest');
 const app = require('../server');
+const { initDb } = require('../db/connect');
+
+beforeAll((done) => {
+  initDb((err) => {
+    if (err) done(err);
+    else done();
+  });
+});
 
 describe('Authors API', () => {
   it('GET /authors - should return all authors', async () => {

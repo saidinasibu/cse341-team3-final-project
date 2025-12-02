@@ -1,5 +1,13 @@
 const request = require('supertest');
 const app = require('../server');
+const { initDb } = require('../db/connect');
+
+beforeAll((done) => {
+  initDb((err) => {
+    if (err) done(err);
+    else done();
+  });
+});
 
 describe('Customers API', () => {
   it('GET /customers - should return all customers', async () => {

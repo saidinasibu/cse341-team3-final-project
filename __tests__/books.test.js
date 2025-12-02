@@ -1,5 +1,13 @@
 const request = require('supertest');
 const app = require('../server');
+const { initDb } = require('../db/connect');
+
+beforeAll((done) => {
+  initDb((err) => {
+    if (err) done(err);
+    else done();
+  });
+});
 
 describe('Books API', () => {
   it('GET /books - should return all books', async () => {
