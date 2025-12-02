@@ -1,7 +1,15 @@
-const router = require('express').Router();
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('../swagger.json');
-router.use('/api-docs', swaggerUi.serve);
-router.get('/api-docs', swaggerUi.setup(swaggerDocument));
+const swaggerAutogen = require('swagger-autogen')();
 
-module.exports = router;
+const doc = {
+  info: {
+    title: 'Next Chapter Books API',
+    description: 'API documentation for the bookstore project'
+  },
+  host: 'cse341-team3-final-project.onrender.com',
+  schemes: ['https']
+};
+
+const outputFile = './swagger.json';
+const endpointsFiles = ['./routes/index.js'];
+
+swaggerAutogen(outputFile, endpointsFiles, doc);
