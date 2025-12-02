@@ -13,8 +13,8 @@ router.get('/', controller.getAll);
 router.get('/:id', controller.getSingle);
 
 // Protected routes
-router.post('/', saveBook, controller.createBook);
-router.put('/:id', saveBook, controller.updateBook);
-router.delete('/:id', controller.deleteBook);
+router.post('/', isAuthenticated, saveBook, controller.createBook);
+router.put('/:id', isAuthenticated, saveBook, controller.updateBook);
+router.delete('/:id', isAuthenticated, controller.deleteBook);
 
 module.exports = router;
